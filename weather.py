@@ -98,6 +98,13 @@ class CalWeather:
         draw = ImageDraw.Draw(img)
 
         draw.text(
+            (w-2, int(w*0.75)+2),
+            f"{round(self.forecast.current.temperature)}°",
+            font=ImageFont.truetype("font/noto-sans/NotoSans_Condensed-Bold.ttf", 75),
+            fill="#000000",
+            anchor="rb"
+        )
+        draw.text(
             (w, int(w*0.75)),
             f"{round(self.forecast.current.temperature)}°",
             font=ImageFont.truetype("font/noto-sans/NotoSans_Condensed-Bold.ttf", 75),
@@ -111,6 +118,14 @@ class CalWeather:
         font = ImageFont.truetype("font/noto-sans/NotoSans_Condensed-Bold.ttf", 40)
         while draw.textlength(summary_sv, font=font) > w - 10 and font.size > 10:
             font = font.font_variant(size=font.size - 1)
+        draw.text(
+            (5-1, h-50+1),
+            summary_sv,
+            font=font,
+            fill="#000000",
+            anchor="lb"
+        )
+        
         draw.text(
             (5, h-50),
             summary_sv,
